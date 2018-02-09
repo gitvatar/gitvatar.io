@@ -1,6 +1,6 @@
 /* TEAM */
     Owner: Kyle Simpson (gitvatar)
-    Contact: https://github.com/gitvatar/avatars/issues
+    Contact: https://github.com/gitvatar/gitvatar.io/issues
     From: Austin, TX USA
 
 /* THANKS */
