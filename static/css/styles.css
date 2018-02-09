@@ -1,0 +1,251 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+html, body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #eee;
+	font-size: 1.2em;
+	color: #444;
+}
+
+header {
+	padding: 50px;
+	background-color: #ddd;
+	border-bottom: 1px solid #999;
+}
+
+main {
+	position: relative;
+}
+
+header > h1 {
+	margin: 0px;
+	padding: 0px;
+}
+
+header > h1 > a[href], header > h1 > a[href]:hover {
+	text-decoration: none;
+	color: #444;
+}
+
+nav {
+	text-align: center;
+}
+
+main {
+	padding: 50px;
+}
+
+footer {
+	border-top: 1px solid #999;
+	padding: 20px 0px;
+	font-size: 0.7em;
+	text-align: center;
+}
+
+a[href], a[href]:visited, a[href]:active {
+	color: #444;
+}
+
+a[href]:hover {
+	color: #000;
+	text-decoration: none;
+}
+
+button, input[type=text] {
+	font-size: 1em;
+}
+
+#avatar-uploader-widget {
+	display: inline-block;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+#upload-picker {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#upload-picker:focus + label {
+	outline: 1px dotted #000;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+#upload-picker + label * {
+	pointer-events: none;
+}
+
+#upload-picker-label {
+	display: inline-block;
+	padding: 6px 20px;
+	background-color: #000;
+	border: 1px solid #fff;
+	color: #fff;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#upload-picker-filename {
+	display: none;
+	padding: 6px 20px;
+	border: 1px solid #000;
+	font-weight: bold;
+}
+
+#avatar-preview {
+	display: none;
+	position: relative;
+	border: 1px solid #000;
+}
+
+#avatar-preview > canvas {
+	display: block;
+	margin: 0px;
+	padding: 0px;
+}
+
+#upload-picker-reset {
+	position: absolute;
+	top: 0px;
+	left: 100%;
+	z-index: 10;
+	border: none;
+	background-color: transparent;
+	color: #888;
+	cursor: pointer;
+	font-size: 0.8em;
+	line-height: 0.6em;
+}
+
+#upload-picker-reset:disabled {
+	opacity: 0.3;
+}
+
+#upload-btn {
+	display: none;
+}
+
+#avatar-uploader-widget-overlay {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	background-color: rgba(100,100,100,0.7);
+}
+
+#avatar-uploader-widget-overlay > img {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+#display-avatar-widget {
+	display: none;
+	position: relative;
+	padding: 0px;
+	margin: 0px;
+}
+
+#display-avatar-url {
+	padding: 6px 20px;
+	border: 1px solid #000;
+	font-weight: bold;
+	font-size: 0.7em;
+}
+
+#display-avatar-img {
+	display: none;
+	border: 1px solid #000;
+}
+
+#display-avatar-img > img {
+	display: block;
+}
+
+#avatar-display-widget-overlay {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	background-color: rgba(100,100,100,0.7);
+}
+
+#avatar-display-widget-overlay > img {
+	display: block;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+}
+
+#notification-banner {
+	display: none;
+	position: absolute;
+	top: 0px;
+	left: 50%;
+	transform: translateX(-50%);
+	min-width: 300px;
+	max-width: 100%;
+	width: 40%;
+	border: 1px solid #aaa;
+	border-top: 0px;
+	background-color: #e0edfa;
+	background-image: linear-gradient(#f1f8ff, #e0edfa);
+	padding: 15px 50px;
+	text-align: center;
+}
+
+#notification-banner-text {
+	font-size: 0.7em;
+}
+
+#notification-close-btn {
+	display: inline;
+	margin-top: 10px;
+	background-color: #eee;
+	border: 1px solid #bbb;
+	padding: 6px 30px;
+	cursor: pointer;
+	font-size: 0.5em;
+}
+
+#notification-cancel-btn {
+	position: absolute;
+	padding: 0px;
+	margin: 0px;
+	top: 3px;
+	right: 6px;
+	color: #999;
+	font-size: 0.6em;
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+}
+
+code {
+	background-color: #ccc;
+}
+
+pre > code {
+	padding: 10px;
+	display: block;
+	white-space: pre;
+}

@@ -1,0 +1,11 @@
+/* TEAM */
+    Owner: Kyle Simpson (gitvatar)
+    Contact: https://github.com/gitvatar/avatars/issues
+    From: Austin, TX USA
+
+/* THANKS */
+    Nodegit: http://www.nodegit.org/
+
+/* SITE */
+    Last update: 02/2018
+    Standards: HTML5, ES6/ES2018, CSS3

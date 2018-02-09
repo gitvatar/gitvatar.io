@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>API</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+	<header>
+		<h1><a href="/">gitvatar</a></h1>
+
+		<nav>
+			<a href="/">home</a> | <a href="/about">about</a> | <a href="/view">view</a> | <a href="/api">API</a>
+		</nav>
+	</header>
+
+	<main>
+		<h1>API</h1>
+
+		<p>
+			<strong>gitvatar</strong> provides a basic REST API for uploading avatar images, and retrieving the public web URL for an already uploaded avatar image.
+		</p>
+		<p>
+			<strong>Note:</strong> Both usage of this website and the API constitutes acceptance of  our <a href="/tos">Terms of Service</a> and our <a href="/privacy">Privacy Policy</a>.
+		</p>
+		<p>
+			All API endpoints support in-browser cross-domain Ajax requests via permissive <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a> authorization response headers.
+		</p>
+		<p>
+			All API endpoints return a <code>403 Forbiddden</code> HTTP status code if there is no valid response to return; no specific error messages are provided. Reasons for this response result include malformed requests, invalid data, unsupported file format (for uploading an avatar image), or no matching data found.
+		</p>
+		<ul>
+			<li><a href="/api/#api-hash"><code>/api/hash/{email-address}</code></a></li>
+			<li><a href="/api/#api-lookup"><code>/api/lookup/{email-hash}</code></a></li>
+			<li><a href="/api/#api-history"><code>/api/history/{email-hash}</code></a></li>
+			<li><a href="/api/#api-upload"><code>/api/upload/{email-hash}</code></a></li>
+		</ul>
+		<ul>
+			<li>
+				<hr>
+				<p><a name="api-hash"></a><code>/api/hash/{email-address}</code></p>
+				<p>Method: <strong>GET</strong></p>
+				<p>Returns: <strong>JSON</strong></p>
+				<p>Example:</p>
+				<p>
+					<pre><code>GET /api/hash/you@domain.tld</code></pre>
+				</p>
+				<p>
+<pre><code>{"hash":"988de9c855ffbfbc8a79ab41a2ae445a"}</code></pre>
+				</p>
+				<p>
+					<strong>NOTE:</strong> This API endpoint is purely optional. Developers are <em>strongly encouraged</em> to compute their own MD5 hash for an email address (for use with other API endpoints) rather than using this API endpoint. Only use this API endpoint if you otherwise cannot compute MD5 hashes.
+				</p>
+				<p>
+					The format of hashing an email matches <a href="https://gravatar.com">Gravatar</a>, which is that all leading/trailing whitespace is removed, the email address is lowercased, and then the standard MD5 (32-character hexadecimal) hashing algorithm is applied.
+				</p>
+				<p>
+					The result from this API endpoint can (and should!) be permanently cached, as it will never change. Long caching reduces load on this service and improves its reliability for everyone.
+				</p>
+			</li>
+			<li>
+				<hr>
+				<p><a name="api-lookup"></a><code>/api/lookup/{email-hash}</code></p>
+				<p>Method: <strong>GET</strong></p>
+				<p>Returns: <strong>JSON</strong></p>
+				<p>Example:</p>
+				<p>
+					<pre><code>GET /api/lookup/988de9c855ffbfbc8a79ab41a2ae445a</code></pre>
+				</p>
+				<p>
+<pre><code>{"url":"https://raw.githubusercontent.com/gitvatar/
+avatars/3f2b769aae3e40f08d761dd513e0bbddfb58b39d/images/avatar.jpg"}
+</code></pre>
+				</p>
+				<p>
+					This API checks to find the most recent avatar image uploaded associated with the email address represented by the MD5 hash&mdash;see the <a href="/api/#api-hash"><code>/api/hash/</code></a> endpoint for more information about this hash format.
+				</p>
+				<p>
+					<strong>NOTE:</strong> A URL returned by this API endpoint may not yet be live/active on Github, but should be available within a few minutes of being uploaded.
+				</p>
+				<p>
+					As most users don't update their avatar images very often, the result from this API endpoint can (and should!) be cached for a period of time; cache for at least 24 hours, and preferably 72 hours or longer. The only drawback of caching the latest avatar image URL associated with an email address for a long period of time is not immediately reflecting a new image the user may upload. Since this is generally rare, the risk of long caching times is low. Long caching reduces load on this service and improves its reliability for everyone.
+				</p>
+			</li>
+			<li>
+				<hr>
+				<p><a name="api-history"></a><code>/api/history/{email-hash}</code></p>
+				<p>Method: <strong>GET</strong></p>
+				<p>Returns: <strong>JSON</strong></p>
+				<p>Example:</p>
+				<p>
+					<pre><code>GET /api/history/988de9c855ffbfbc8a79ab41a2ae445a</code></pre>
+				</p>
+				<p>
+<pre><code>{"urls":["https://raw.githubusercontent.com/gitvatar/
+avatars/3f2b769aae3e40f08d761dd513e0bbddfb58b39d/images/avatar.jpg",
+"https://raw.githubusercontent.com/gitvatar/avatars/
+fdbcd5c88b839ada6bc21b0f65db93fad2d5d9e9/images/avatar.jpg"]}
+</code></pre>
+				</p>
+				<p>
+					This API checks to find up to the latest 25 avatar images uploaded that are associated with the email address represented by the MD5 hash&mdash;see the <a href="/api/#api-hash"><code>/api/hash/</code></a> endpoint for more information about this hash format. The list is sorted most recent first.
+				</p>
+				<p>
+					<strong>NOTE:</strong> A URL returned by this API endpoint may not yet be live/active on Github, but should be available within a few minutes of being uploaded.
+				</p>
+				<p>
+					As most users don't update their avatar images very often, the result from this API endpoint can (and should!) be cached for a period of time; cache for at least 24 hours, and preferably 72 hours or longer. The only drawback of caching the list of avatar image URLs associated with an email address for a long period of time is not immediately reflecting a new image the user may upload. Since this is generally rare, the risk of long caching times is low. Long caching reduces load on this service and improves its reliability for everyone.
+				</p>
+			</li>
+			<li>
+				<hr>
+				<p><a name="api-upload"></a><code>/api/upload/{email-hash}</code></p>
+				<p>Method: <strong>POST</strong></p>
+				<p>Returns: <strong>JSON</strong></p>
+				<p>Example:</p>
+				<p>
+					<pre><code>POST /api/upload/988de9c855ffbfbc8a79ab41a2ae445a</code></pre>
+				</p>
+				<p>
+<pre><code>{"url":"https://raw.githubusercontent.com/gitvatar/
+avatars/3f2b769aae3e40f08d761dd513e0bbddfb58b39d/images/avatar.jpg"}
+</code></pre>
+				</p>
+				<p>
+					This API uploads a new avatar image and associates it with the email address represented by the MD5 hash&mdash;see the <a href="/api/#api-hash"><code>/api/hash/</code></a> endpoint for more information about this hash format.
+				</p>
+				<p>
+					The <code>POST</code> request body should include only the raw binary image data&mdash;<strong>NOT</strong> a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">Data-URI</a>. Image data must be less than 2MB in size or the upload will be rejected.
+				</p>
+				<p>
+					Accepted image formats are: <strong>jpeg, png, webp, gif, svg</strong>. All avatar images are converted to <strong>jpeg</strong> format in their upload processing.
+				</p>
+				<p>
+					<strong>NOTE:</strong> A URL returned by this API endpoint may not yet be live/active on Github, but should be available within a few minutes of being uploaded.
+				</p>
+				<p>
+					As most users don't update their avatar images very often, the result from this API endpoint can (and should!) be cached for a period of time; cache for at least 24 hours, and preferably 72 hours or longer. The only drawback of caching the latest avatar image URL associated with an email address for a long period of time is not immediately reflecting a new image the user may upload. Since this is generally rare, the risk of long caching times is low. Long caching reduces load on this service and improves its reliability for everyone.
+				</p>
+			</li>
+		</ul>
+	</main>
+
+	<footer>
+		&copy; 2018 gitvatar. All rights reserved. <a href="/privacy">Privacy</a> | <a href="/tos">Terms of Service</a>
+	</footer>
+</body>
+</html>

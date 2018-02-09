@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>gitvatar</title>
+	<link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+	<header>
+		<h1><a href="/">gitvatar</a></h1>
+
+		<nav>
+			home | <a href="/about">about</a> | <a href="/view">view</a> | <a href="/api">API</a>
+		</nav>
+	</header>
+
+	<main>
+		<p>
+			Upload your avatar picture and associate it with your email address. Now any site can display it!
+		</p>
+		<p>
+			(<a href="/about">learn more</a> and follow us: <a href="https://twitter.com/gitvatar">@gitvatar</a>)
+		</p>
+		<hr>
+		<div rel="js-avatar-uploader-widget" id="avatar-uploader-widget">
+			<div><input rel="js-enter-email" type="text" placeholder="Enter Email Address" size="50" maxlength="50" tabindex="0" autofocus>&nbsp;<span rel="js-email-valid-indicator"></span></div>
+			<br>
+			<div><input rel="js-upload-picker" id="upload-picker" type="file" accept="image/png,image/gif,image/jpeg,image/svg+xml" tabindex="0"><label rel="js-upload-picker-label" id="upload-picker-label" for="upload-picker" title="Select Your Avatar">Select Your Avatar</label> <span rel="js-upload-picker-filename" id="upload-picker-filename"></span></div>
+			<br>
+			<div rel="js-avatar-preview" id="avatar-preview"><canvas width="0" height="0"></canvas><button rel="js-upload-picker-reset" id="upload-picker-reset" title="Remove" tabindex="1">&#10006;</button></div>
+			<br><br>
+			<button rel="js-upload-btn" id="upload-btn" tabindex="0" disabled>Upload</button>
+			<div rel="js-widget-overlay" id="avatar-uploader-widget-overlay"><img src="/images/loader-1.gif" alt="Processing..."></div>
+		</div>
+		<p>
+			Usage constitutes acceptance of our <a href="/tos">Terms of Service</a> and <a href="/privacy">Privacy Policy</a>.
+		</p>
+	</main>
+
+	<footer>
+		&copy; 2018 gitvatar. All rights reserved. <a href="/privacy">Privacy</a> | <a href="/tos">Terms of Service</a>
+	</footer>
+
+	<div rel="js-notification-banner" id="notification-banner">
+		<div rel="js-notification-banner-text" id="notification-banner-text"></div>
+		<button rel="js-notification-close-btn" id="notification-close-btn">OK</button>
+		<button rel="js-notification-cancel-btn" id="notification-cancel-btn" title="Close">&#10006;</button>
+	</div>
+
+	<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.10.0/js/md5.min.js"></script>-->
+	<script src="/js/md5.min.js"></script>
+	<script src="/js/upload.js"></script>
+	<script src="/js/notification.js"></script>
+</body>
+</html>
